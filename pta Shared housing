@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	int num[12]={0};   //num数组用于判定电话号码中出现哪些数字 
+	char s[12];
+	for(int i=0;i<11;i++){
+		scanf("%c",&s[i]);   //将出现的数字用num数字记录，即出现的数字由0改为1 
+		num[s[i]-'0']=1;
+	}
+	int arr[10]={-1};
+	int sum=0;
+	for(int i=9;i>=0;i--){
+		if(num[i])
+		{
+			arr[sum]=i;    //将出现的数字从大到小复制给arr数组，同时sum负责记录出现过几个数字 
+			sum++;
+		}
+	}
+	int index[10];
+	for(int i=0;i<strlen(s);i++){
+		for(int j=0;j<sum;j++){          //通过循环得到电话号码的每个数字所对应在arr数组中的下标，并赋值给index数组。 
+			if((s[i]-'0')==arr[j]){       
+				index[i]=j;
+			}
+		}
+	}
+	printf("int[] arr = new int[]{");   //按格式输出 
+	for(int i=0;i<sum;i++){
+		if(i!=sum-1) printf("%d,",arr[i]);
+		else printf("%d",arr[i]);	
+	}
+	printf("};\n");
+	printf("int[] index = new int[]{");
+	for(int i=0;i<11;i++)	{
+		if(i!=10) printf("%d,",index[i]);
+		else printf("%d",index[i]);
+	}
+	printf("};");
+}
