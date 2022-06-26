@@ -1,0 +1,716 @@
+#include<stdio.h>
+#include<process.h>
+#include<stdlib.h>
+#include<windows.h>
+#include<conio.h>
+int w;
+int *p;
+struct  account
+{
+	int id;
+	char username[20];
+	int  password;
+	int  balance;
+}acc[4]={{1001,"张三",123244,2000},{1002,"李四",123245,1500},{1003,"王五",123246,1200},{1004,"刘六",123247,1800}};
+void A()
+{
+	int i;
+	FILE  *fp;
+	if((fp=fopen("C:\\Users\\王荞燠\\Desktop\\wqy.txt","w"))==NULL)
+	{
+	printf("can't  open  this  file.\n");
+	exit(0);
+	}
+	for(i=0;i<4;i++)
+	{
+		fprintf(fp,"%d\t%s\t%d\t%d\n",acc[i].id,acc[i].username,acc[i].password,acc[i].balance);
+	}
+	fclose(fp);
+	if((fp==fopen("C:\\Users\\王荞燠\\Desktop\\wqy.txt","r"))==NULL)
+	{
+	printf("can't  open  this  file.\n");
+	exit(0);
+	}
+	for(i=0;i<4;i++)
+	{
+		fscanf(fp,"%d %s %d %d",&acc[i].id,acc[i].username,&acc[i].password,&acc[i].balance);
+	}
+}
+void  show  ()       //    系统界面
+{
+	{
+       int  i, j, k, l, m,n;
+       for (i=1; i<=5; i++)    printf("\n"); 
+       for (i=1; i<=3; i++) 
+	   { 
+		  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_INTENSITY|FOREGROUND_GREEN);         //绿色
+          for (j=1; j<=32-2*i; j++)  printf(" "); 
+          for (k=1; k<=4*i+1; k++)
+			  printf("*", n);
+          for (l=1; l<=13-4*i; l++)  printf(" "); 
+          for (m=1; m<=4*i+1; m++)
+			  printf("*", n);
+          printf("\n"); 
+	   }
+          for (i=2; i<=3; i++)
+		  { 
+             for (j=1; j<=24+1; j++)   printf(" "); 
+             for (k=1; k<=8; k++)
+			 {
+				    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_INTENSITY|FOREGROUND_RED);      //红色
+                	printf("*");
+	                if (k==3)
+					{
+			           printf("欢迎使用ATM自助取款机");
+			           k+=2;
+					}
+
+			 }
+                    printf("*", n);
+                    printf("\n");  
+		  }
+		    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_INTENSITY|FOREGROUND_BLUE);     //蓝色
+            for (i=7; i>=1; i--)
+		 { 
+            for (j=1; j<=40-2*i; j++)  printf(" "); 
+            for (k=1; k<=4*i-1; k++)
+			printf("*", n);
+            printf("\n");  
+		 }
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_BLUE);       //白色
+            for (i=1; i<=39; i++)    printf(" ");
+            printf("*\n", n);  
+            for (i=1; i<=5; i++)    printf("\n"); 
+	}
+	system("pause");
+	system("cls");
+}
+void YHXT()    //银行系统
+{
+	void show();
+	void login();
+	int a;
+	void date();
+	printf("\n\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_INTENSITY|FOREGROUND_RED);      //红色
+	printf("  ################################################################################# \n");
+    printf("  ▓                          *     银行系统     *                                ▓ \n");
+    printf("  #################################################################################\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_INTENSITY|FOREGROUND_BLUE);     //蓝色
+	printf("  #       ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆        #\n");
+	printf("  #       |◆|******|◆|                                    |◆|******|◆|        #\n");
+	printf("  #       |◆|******|◆|       ☆ 开户业务    请按 1        |◆|******|◆|        #\n"); 
+	printf("  #       |◆|******|◆|       ☆ 登录系统    请按 2        |◆|******|◆|        #\n");
+	printf("  #       |◆|******|◆|       ☆ 退出系统    请按 3        |◆|******|◆|        #\n");
+	printf("  #       |◆|******|◆|                                    |◆|******|◆|        #\n");
+	printf("  #       ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆        #\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_GREEN);    //橙色
+	printf("  #################################################################################\n\n\n");
+	printf("请选择您所需要的服务项目:");
+	scanf("%d",&a);
+	system("cls");
+	if(a==1)
+	show();
+	else if(a==2)
+	login();
+	else if(a==3)
+	show();
+	 
+}
+void login()        //   系统登录
+{
+	system("color F");     //亮白色
+	void  ZGN();
+	void  EGN();
+	int bianli(int a,int b);
+	int j,s,x,y,times=1;
+	int a;
+/*	char y;
+	int i=0;
+	char b[20];  */
+	printf("* * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
+	printf("*     温馨提示:在输入密码时请注意周边环境是否安全!      *\n");
+	printf("* * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n\n");
+	printf("请输入账户:\n");
+	scanf("%d",&x);
+	printf("请输入密码:\n");
+	scanf("%d",&y);
+/*	while(y!='\r')
+	{
+		y=_getch();             //用_getch()函数，字符不会显示在屏幕上 
+		if(y=='\b')             //当遇到退格符时即\b时，我们要用空格来代替             
+		{	
+		   --i;
+		   printf("\b \b");      //这里的意思就是说将已经输入的字符退一个格，用空格\r来代替，再退回一个格      
+	    }
+		else if(y=='\r')        //当遇到回车符\r时，我们就退出循环        
+		break;
+		else
+		{
+		    printf("*");         //每输入一次就显示一个*
+		    b[i++]=y;           //将刚刚的字符放入字符数组里           
+		}
+	}
+	printf("\n");*/
+	system("cls");
+	for(j=0;j<3;j++)
+	{
+		s=bianli(x,y);
+		if(s)
+		{
+			system("color 2");     //绿色
+			printf("* * * * * * * * * * * * * *\n");
+			printf("*   恭喜您！登陆成功!     *\n");
+			printf("* * * * * * * * * * * * * *\n");
+			system("pause");
+			system("cls");
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_INTENSITY|FOREGROUND_RED);      //红色
+			printf("* * * * * * * * * * * * * * * * * * * * * *\n");
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_GREEN);    //橙色
+			printf("*      请选择服务语言:                    *\n");
+			printf("*            1.中文     2.English         *\n");
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_INTENSITY|FOREGROUND_RED);      //红色
+			printf("* * * * * * * * * * * * * * * * * * * * * *\n\n");
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_BLUE);       //白色
+			printf("您所选的语言是:");
+			scanf("%d",&a);
+			system("pause");
+			system("cls");
+			if(a==1)
+			{
+			ZGN();
+			}
+			else
+			{
+			EGN();
+			}
+			break;
+		}
+		else
+		{
+			system("color 4");     //红色
+			printf("* * * * * * * * * * * * * * * * * * *\n");
+			printf("*     登陆失败，请重新输入!         *\n");
+			printf("* * * * * * * * * * * * * * * * * * *\n");
+			printf("请输入账户:\n");
+	        scanf("%d",&x);
+	        printf("请输入密码:\n");
+	        scanf("%d",&y);
+			times++;
+            system("cls");
+		}
+		if(times==3)
+		{
+			system("color 3");      //湖蓝色
+			printf("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
+			printf("*       账号或密码错误达到3次，无法使用该系统!            *\n");
+			printf("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n\n");
+			show();
+		}
+	}
+	system("pause");
+	system("cls");
+}
+int bianli(int a,int b)    //    遍历函数
+{
+	int i,j;
+	for(i=0;i<50;i++)
+	{
+	 if(acc[i].id==a&&acc[i].password==b)
+	 {
+		 p=&i;
+		 w=*p;
+		 j=1;
+		 return j;
+	 }
+	}
+	j=0;
+	return j;
+}
+void  ZGN()               //   ATM机所有服务项目(中文)
+{
+	void A1();
+	void A2();
+	void A3();
+	void A4();
+	void A5();
+	void A6();
+	int k;
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_INTENSITY|FOREGROUND_RED);      //红色
+	printf("* * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_BLUE);       //白色
+	printf("* * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_GREEN);    //橙色
+	printf("* *   *                                       *   * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_INTENSITY|FOREGROUND_GREEN);         //绿色
+	printf("* * * *             ATM机服务大厅:            * * * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_BLUE);       //白色
+	printf("* *                 1.存款                        * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_INTENSITY|FOREGROUND_RED);      //红色
+	printf("* *                 2.取款                        * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_GREEN);    //橙色
+	printf("* *                 3.转账                        * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_BLUE);       //白色
+	printf("* *                 4.修改密码                    * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_INTENSITY|FOREGROUND_BLUE);     //蓝色
+	printf("* *                 5.余额查询                    * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_BLUE);       //白色
+	printf("* * * *             6.退出系统                * * * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_GREEN);    //橙色
+	printf("* *   *                                       *   * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_INTENSITY|FOREGROUND_BLUE);     //蓝色
+	printf("* * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_INTENSITY|FOREGROUND_GREEN);         //绿色
+	printf("* * * * * * * * * * * * * * * * * * * * * * * * * * *\n\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_BLUE);       //白色
+	printf("请选择您所需要的服务项目:");
+	scanf("%d",&k);
+	if(k==1)
+	{
+		A1();
+	}
+	else  if(k==2)
+	{
+		A2();
+	}
+	else  if(k==3)
+	{
+		A3();
+	}
+	else  if(k==4)
+	{
+		A4();
+	}
+	else  if(k==5)
+	{
+		A5();
+	}
+	else  if(k==6)
+	{
+		A6();
+	}
+}
+void  A1()   //    存款项目
+{
+	void date();
+	system("color F");     //亮白色
+	int a;
+	system("cls");
+	printf("请输入您的存款金额:\n");
+    scanf("%d",&a);
+	system("cls");
+	printf("您的存款金额为:%d\n",a);
+	acc[w].balance=acc[w].balance+a;
+	printf("您的账户余额为:\n");
+    printf("%d元\n",acc[w].balance);
+	printf("交易时间:");
+	date();
+	system("pause");
+    system("cls");
+	ZGN();
+}
+void  A2()   //    取款项目
+{
+	void date();
+	system("color F");     //亮白色
+	int b;
+	system("cls");
+w:	printf("请输入您的取款金额:\n");
+	scanf("%d",&b);
+	if(b<=acc[w].balance)
+	{
+    printf("您的取款金额为:%d元\n",b);
+	acc[w].balance=acc[w].balance-b;
+	printf("您的账户余额为:\n");
+	printf("%d元\n",acc[w].balance);
+	printf("交易时间:");
+	date();
+	system("pause");
+    system("cls");
+	}
+	else
+	{
+		printf("您的账户余额不足，转账失败,请重新操作!");
+		system("pause");
+        system("cls");
+        goto w;
+	}
+	printf("请进行新的操作!\n");
+    system("cls");
+	ZGN();
+}
+void  A3()   //    转账项目
+{
+	void date();
+	system("color F");     //亮白色
+	int a,b,i,j;
+	int tq(int a);
+	int chose(int a);
+	system("cls");
+	printf("转账的账户:");
+	scanf("%d",&a);
+q:	j= chose(a);
+	i=tq(a);
+	if(j)
+	{
+	   printf("转账的金额:");
+	   scanf("%d",&b);
+	   if(b<acc[w].balance)
+	   {
+	     acc[w].balance=acc[w].balance-b;
+	     acc[i].balance=acc[i].balance+b;
+	     printf("账户的余额是:%d元\n",acc[w].balance);
+		 printf("交易时间:");
+	     date();
+	   }
+	   else
+	   {
+		 printf("账户余额不足,请重新输入转账金额:\n");
+		 scanf("%d",&b);
+		 A3();
+	   }
+	}
+	else
+	{
+		printf("该账户错误,请重新输入\n");
+		scanf("%d",&a);
+		goto q;
+	}
+	system("pause");
+    system("cls");
+	ZGN();
+
+}
+int tq(int a)                                   //    提取用户的下标
+{
+	int i;
+	for(i=0;i<3;i++)
+	{
+		if(a==acc[i].id)
+		{
+			return i;
+		}
+	}
+}
+int chose(int a)                                //   判断账户是否为该银行账户
+{
+	int i,k;
+	for(i=0;i<3;i++)
+	{
+		if(a==acc[i].id)
+		{
+			k=0;
+			return 0;
+		}
+		if(a==acc[w].id)
+		{
+		    k=0;
+			return 0;
+		}
+		else
+		{
+			k=1;
+			return k;
+		}
+	}
+}
+void  A4()   //    修改密码
+{
+	system("color F");     //亮白色
+	int i,j;
+    system("cls");
+y:  printf("请输入你的新密码:\n");
+    scanf("%d",&i);
+    system("cls");
+    printf("请再次输入新密码:\n");
+    scanf("%d",&j);
+    system("cls");
+    if(i!=j)
+	{
+	   printf("你两次输入的密码不一致，请重新输入!!!\n");
+	   goto y;
+	}
+    else
+	{
+	   acc[w].password=j;
+	   printf("修改密码成功!!!\n");
+	   system("pause");
+	   system("cls");
+	   ZGN();
+	}
+	   system("pause");
+	   system("cls");
+	   ZGN();
+}
+void  A5()   //    余额查询
+{
+	system("color F");     //亮白色
+    system("cls");
+	printf("账户:%d\n姓名:%s\n金额:%d\n",acc[w].id,acc[w].username,acc[w].balance);
+	system("pause");
+    system("cls");
+    ZGN();
+}
+void  A6()   //    退出系统
+{
+	system("pause");
+    system("cls");
+	YHXT();
+} 
+void  EGN()               //   ATM机所有服务项目(英文)
+{
+	void B1();
+	void B2();
+	void B3();
+	void B4();
+	void B5();
+	void B6();
+	int k;
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_INTENSITY|FOREGROUND_RED);      //红色
+	printf("* * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_BLUE);       //白色
+	printf("* * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_GREEN);    //橙色
+	printf("* *   *                                       *   * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_INTENSITY|FOREGROUND_GREEN);         //绿色
+	printf("* * * *             ATM service hall:         * * * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_BLUE);       //白色
+	printf("* *                 1.Deposit                     * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_INTENSITY|FOREGROUND_RED);      //红色
+	printf("* *                 2.Withdraw money              * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_GREEN);    //橙色
+	printf("* *                 3.Transfer accounts           * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_BLUE);       //白色
+	printf("* *                 4.Change password             * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_INTENSITY|FOREGROUND_BLUE);     //蓝色
+	printf("* *                 5.Balance query               * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_BLUE);       //白色
+	printf("* * * *             6.Exit the system         * * * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_GREEN);    //橙色
+	printf("* *   *                                       *   * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_INTENSITY|FOREGROUND_BLUE);     //蓝色
+	printf("* * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_INTENSITY|FOREGROUND_GREEN);         //绿色
+	printf("* * * * * * * * * * * * * * * * * * * * * * * * * * *\n\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_GREEN|FOREGROUND_RED|FOREGROUND_BLUE);       //白色
+	printf("Please select the service items you need:");
+	scanf("%d",&k);
+	if(k==1)
+	{
+		B1();
+	}
+	else  if(k==2)
+	{
+		B2();
+	}
+	else  if(k==3)
+	{
+		B3();
+	}
+	else  if(k==4)
+	{
+		B4();
+	}
+	else  if(k==5)
+	{
+		B5();
+	}
+	else  if(k==6)
+	{
+		B6();
+	}
+}
+void  B1()   //    存款项目
+{
+	void date();
+	system("color F");     //亮白色
+	int a;
+	system("cls");
+	printf("Please enter your deposit amount:\n");
+    scanf("%d",&a);
+	system("cls");
+	printf("You deposit amount is:%d\n",a);
+	acc[w].balance=acc[w].balance+a;
+	printf("Your account balance is:\n");
+    printf("%d$\n",acc[w].balance);
+	printf("Trading time:");
+	date();
+	system("pause");
+    system("cls");
+	EGN();
+}
+void  B2()   //    取款项目
+{
+	void date();
+	system("color F");     //亮白色
+	int b;
+	system("cls");
+w:	printf("Please enter your withdrawal amount:\n");
+	scanf("%d",&b);
+	if(b<=acc[w].balance)
+	{
+    printf("Your withdrawal amount is:%d$\n",b);
+	acc[w].balance=acc[w].balance-b;
+	printf("Your account balance is:\n");
+	printf("%d$\n",acc[w].balance);
+	printf("Trading time:");
+	date();
+	system("pause");
+    system("cls");
+	}
+	else
+	{
+		printf("Your insufficient account balance,transfer failed,please operate again!");
+		system("pause");
+        system("cls");
+        goto w;
+	}
+	printf("Please perform a new operation!\n");
+    system("cls");
+	EGN();
+}
+void  B3()   //    转账项目
+{
+	void date();
+	system("color F");     //亮白色
+	int a,b,i,j;
+	int tq(int a);
+	int chose(int a);
+	system("cls");
+	printf("Account transferred:");
+	scanf("%d",&a);
+q:	j= chose(a);
+	i=tq(a);
+	if(j)
+	{
+	   printf("Amount transferred:");
+	   scanf("%d",&b);
+	   if(b<acc[w].balance)
+	   {
+	     acc[w].balance=acc[w].balance-b;
+	     acc[i].balance=acc[i].balance+b;
+	     printf("Account balance is:%d元\n",acc[w].balance);
+		 printf("Trading time:");
+	     date();
+	   }
+	   else
+	   {
+		 printf("Your insufficient account balance,please re-enter the transfer amount:\n");
+		 scanf("%d",&b);
+		 B3();
+	   }
+	}
+	else
+	{
+		printf("This account is incorrect,please re-enter!\n");
+		scanf("%d",&a);
+		goto q;
+	}
+	system("pause");
+    system("cls");
+	EGN();
+
+}
+void  B4()   //    修改密码
+{
+	void YCMM();
+	system("color F");     //亮白色
+	int i,j;
+    system("cls");
+y:  printf("Please enter your new password:\n");
+    scanf("%d",&i);
+    system("cls");
+    printf("Please enter the new password again:\n");
+    scanf("%d",&j);
+    system("cls");
+    if(i!=j)
+	{
+	   printf("The two passwords you entered do not match,please re-enter! ! !\n");
+	   goto y;
+	}
+    else
+	{
+	   acc[w].password=j;
+	   printf("Password modified successfully!!!\n");
+	   system("pause");
+	   system("cls");
+	   EGN();
+	}
+	   system("pause");
+	   system("cls");
+	   EGN();
+}
+void  B5()   //    余额查询
+{
+	system("color F");     //亮白色
+    system("cls");
+	printf("Account:%d\nUsername:%s\nBalance:%d\n",acc[w].id,acc[w].username,acc[w].balance);
+	system("pause");
+    system("cls");
+    EGN();
+}
+void  B6()     //    退出系统
+{
+	system("pause");
+    system("cls");
+	YHXT();
+}   
+void BL()                               //刷新数据
+{
+	int i;
+    FILE *fp;
+	fp=fopen("C:\\Users\\王荞燠\\Desktop\\wqy.txt","w");
+	for(i=0;i<4;i++)
+	{
+		fprintf(fp,"%d\t%s\t%d\t%d\n",acc[i].id,acc[i].username,acc[i].password,acc[i].balance);
+	}
+	fclose(fp);
+    fp=fopen("C:\\Users\\王荞燠\\Desktop\\wqy.txt","r");
+    for(i=0;i<4;i++)
+	{
+	   fscanf(fp,"%d\t%s\t%d\t%d\n",&acc[i].id,acc[i].username,&acc[i].password,&acc[i].balance);
+	   printf("%d\t%s\t%d\t%d\n",acc[i].id,acc[i].username,acc[i].password,acc[i].balance);
+	}
+}
+/*void YCMM()    //隐藏密码功能
+{
+	char ch;
+	int i=0;
+	char a[20];
+	printf("请输入密码:");
+	while(ch!='\r')
+	{
+		ch=_getch();             //用_getch()函数，字符不会显示在屏幕上 
+		if(ch=='\b')             //当遇到退格符时即\b时，我们要用空格来代替             
+		{	
+		   --i;
+		   printf("\b \b");      //这里的意思就是说将已经输入的字符退一个格，用空格\r来代替，再退回一个格      
+	    }
+		else if(ch=='\r')        //当遇到回车符\r时，我们就退出循环        
+		break;
+		else
+		{
+		    printf("*");         //每输入一次就显示一个#
+		    a[i++]=ch;           //将刚刚的字符放入字符数组里           
+		}
+	}
+	printf("\n");
+}  */
+void date()   //显示当前日期
+{
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),FOREGROUND_INTENSITY|FOREGROUND_GREEN);         //绿色
+    printf("\n    当前日期:");
+    system("date/t");
+    printf("    当前时间:");
+    system("time/t"); 	
+}
+
+void  main()
+{
+	A();
+	show();
+	date();
+	YHXT();
+	BL();
+//	YCMM();
+}
